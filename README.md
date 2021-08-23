@@ -1,4 +1,4 @@
-Welcome to Clinica UnionVet 👋
+Welcome to Clinica UnionVet API👋
 Version License: MIT
 
 Es un proyecto adaptado a la digitalizacion de hoy en dia para una clinica veterinaria que desea volver su entorno tecnologico mas amigable para ellos como para sus usuarios!
