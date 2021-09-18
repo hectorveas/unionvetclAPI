@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-export const TipSchema = new Schema(
+export const PublicationSchema = new Schema(
   {
     url: { type: String, required: true },
   },
