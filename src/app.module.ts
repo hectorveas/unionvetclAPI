@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { ContactModule } from './contact/contact.module';
 import { ProductModule } from './product/product.module';
 import { TipModule } from './tip/tip.module';
+import { PublicationModule } from './publication/publication.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { TipModule } from './tip/tip.module';
     }),
     ContactModule,
     ProductModule,
-    TipModule
+    TipModule,
+    PublicationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
