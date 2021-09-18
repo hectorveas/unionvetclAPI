@@ -16,6 +16,7 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
   app.useGlobalPipes(new ValidationPipe({ forbidNonWhitelisted: true }));
   app.enableCors();
+  app.setGlobalPrefix('api/');
   await app.listen(process.env.PORT || 3000);
   app.use(helmet());
   app.use(csurf());
