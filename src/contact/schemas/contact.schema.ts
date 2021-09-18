@@ -1,10 +1,11 @@
 import { Schema } from 'mongoose';
 
-export const ContactSchema = new Schema({
-  name: String,
-  rut: String,
-  email: String,
-  message: String,
-  //createdAt: { type: Date, default: Date.now },
-  //updatedAt: { type: Date, default: Date.now },
-}, { timestamps: true });
+export const ContactSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    rut: { type: String, required: true },
+    email: { type: String, required: true },
+    message: { type: String, required: true },
+  },
+  { timestamps: true },
+);
