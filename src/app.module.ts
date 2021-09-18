@@ -5,6 +5,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ContactModule } from './contact/contact.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { ContactModule } from './contact/contact.module';
       ttl: 60,
       limit: 10,
     }),
-    ContactModule
+    ContactModule,
+    ProductModule
   ],
   controllers: [AppController],
   providers: [AppService],
