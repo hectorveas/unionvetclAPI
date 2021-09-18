@@ -1,5 +1,19 @@
-import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Post, Put, Res } from '@nestjs/common';
-import { CreatePublicationDTO, UpdatePublicationDTO } from './dto/publication.dto';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  NotFoundException,
+  Param,
+  Post,
+  Put,
+  Res,
+} from '@nestjs/common';
+import {
+  CreatePublicationDTO,
+  UpdatePublicationDTO,
+} from './dto/publication.dto';
 import { PublicationService } from './publication.service';
 
 @Controller('publication')

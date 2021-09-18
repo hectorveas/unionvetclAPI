@@ -5,10 +5,8 @@ import { TipController } from './tip.controller';
 import { TipService } from './tip.service';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: 'Tip', schema: TipSchema }]),
-  ],
+  imports: [MongooseModule.forFeature([{ name: 'Tip', schema: TipSchema }])],
   controllers: [TipController],
-  providers: [TipService]
+  providers: [TipService],
 })
 export class TipModule {}

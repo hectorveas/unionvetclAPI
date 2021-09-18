@@ -27,7 +27,7 @@ import { PublicationModule } from './publication/publication.module';
     ContactModule,
     ProductModule,
     TipModule,
-    PublicationModule
+    PublicationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

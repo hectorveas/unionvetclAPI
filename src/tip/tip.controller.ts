@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Post, Put, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  NotFoundException,
+  Param,
+  Post,
+  Put,
+  Res,
+} from '@nestjs/common';
 import { CreateTipDTO, UpdateTipDTO } from './dto/tip.dto';
 import { TipService } from './tip.service';
 
@@ -44,10 +55,7 @@ export class TipController {
     @Body() updateTipDTO: UpdateTipDTO,
     @Param('id') id,
   ) {
-    const tip = await this.tipService.updateTip(
-      id,
-      updateTipDTO,
-    );
+    const tip = await this.tipService.updateTip(id, updateTipDTO);
     if (!tip) throw new NotFoundException('Product does not exist!');
     return res.status(HttpStatus.OK).json({
       message: 'Tip Updated Successfully',

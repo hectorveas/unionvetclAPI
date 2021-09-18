@@ -1,14 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreatePublicationDTO, UpdatePublicationDTO } from 'src/publication/dto/publication.dto';
+import {
+  CreatePublicationDTO,
+  UpdatePublicationDTO,
+} from 'src/publication/dto/publication.dto';
 import { Publication } from 'src/publication/interfaces/publication.interface';
 
 @Injectable()
 export class PublicationService {
-  constructor(@InjectModel('Publication') private readonly publicationModel: Model<Publication>) {}
+  constructor(
+    @InjectModel('Publication')
+    private readonly publicationModel: Model<Publication>,
+  ) {}
 
-  async createPublication(createPublicationDTO: CreatePublicationDTO): Promise<Publication> {
+  async createPublication(
+    createPublicationDTO: CreatePublicationDTO,
+  ): Promise<Publication> {
     const newPublication = new this.publicationModel(createPublicationDTO);
     return newPublication.save();
   }
@@ -28,7 +36,10 @@ export class PublicationService {
     return publication;
   }
 
-  async updatePublication(id: string, updatePublicationDTO: UpdatePublicationDTO): Promise<Publication> {
+  async updatePublication(
+    id: string,
+    updatePublicationDTO: UpdatePublicationDTO,
+  ): Promise<Publication> {
     const updatedPublication = await this.publicationModel
       .findByIdAndUpdate(id, { $set: updatePublicationDTO }, { new: true })
       .exec();
