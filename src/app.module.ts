@@ -8,6 +8,7 @@ import { ContactModule } from './contact/contact.module';
 import { ProductModule } from './product/product.module';
 import { TipModule } from './tip/tip.module';
 import { PublicationModule } from './publication/publication.module';
+import { ServiceModule } from './service/service.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { PublicationModule } from './publication/publication.module';
     ProductModule,
     TipModule,
     PublicationModule,
+    ServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
