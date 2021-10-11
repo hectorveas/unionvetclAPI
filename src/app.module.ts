@@ -9,6 +9,7 @@ import { ProductModule } from './product/product.module';
 import { TipModule } from './tip/tip.module';
 import { PublicationModule } from './publication/publication.module';
 import { ServiceModule } from './service/service.module';
+import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 
 @Module({
@@ -31,6 +32,7 @@ import { AdminModule } from './admin/admin.module';
     TipModule,
     PublicationModule,
     ServiceModule,
+    AuthModule,
     AdminModule,
   ],
   controllers: [AppController],
