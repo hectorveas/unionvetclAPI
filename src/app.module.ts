@@ -9,6 +9,7 @@ import { ProductModule } from './product/product.module';
 import { TipModule } from './tip/tip.module';
 import { PublicationModule } from './publication/publication.module';
 import { ServiceModule } from './service/service.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ServiceModule } from './service/service.module';
     TipModule,
     PublicationModule,
     ServiceModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],
