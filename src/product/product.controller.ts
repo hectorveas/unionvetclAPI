@@ -9,14 +9,22 @@ import {
   Post,
   Put,
   Res,
+  UseGuards,
 } from '@nestjs/common';
+import { Public } from 'src/auth/guards/decorators/public.decorator';
+import { Roles } from 'src/auth/guards/decorators/roles.decorator';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Role } from 'src/auth/models/roles.model';
 import { CreateProductDTO, UpdateProductDTO } from './dto/product.dto';
 import { ProductService } from './product.service';
 
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('product')
 export class ProductController {
   constructor(private productService: ProductService) {}
 
+  @Roles(Role.ADMIN)
   @Post()
   async createProduct(@Res() res, @Body() createProductDTO: CreateProductDTO) {
     const product = await this.productService.createProduct(createProductDTO);
@@ -26,12 +34,14 @@ export class ProductController {
     });
   }
 
+  @Public()
   @Get()
   async getProducts(@Res() res) {
     const product = await this.productService.getProducts();
     return res.status(HttpStatus.OK).json(product);
   }
 
+  @Roles(Role.ADMIN)
   @Get('/:id')
   async getProduct(@Res() res, @Param('id') id) {
     const product = await this.productService.getProduct(id);
@@ -39,6 +49,7 @@ export class ProductController {
     return res.status(HttpStatus.OK).json(product);
   }
 
+  @Roles(Role.ADMIN)
   @Delete('/:id')
   async deleteProduct(@Res() res, @Param('id') id) {
     const product = await this.productService.deleteProduct(id);
@@ -49,6 +60,7 @@ export class ProductController {
     });
   }
 
+  @Roles(Role.ADMIN)
   @Put('/:id')
   async updateProduct(
     @Res() res,

@@ -9,17 +9,11 @@ export class CreateServiceDTO {
   @IsNotEmpty()
   @ApiProperty()
   readonly name: string;
-  @IsString()
-  @MaxLength(1000, {
-    message: 'input incorrecto ',
-  })
+
   @IsNotEmpty()
   @ApiProperty()
   readonly description: string[];
-  @IsString()
-  @MaxLength(250, {
-    message: 'input incorrecto ',
-  })
+
   @IsNotEmpty()
   @ApiProperty()
   readonly imagesURL: string[];
