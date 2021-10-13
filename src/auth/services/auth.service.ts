@@ -1,14 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { AdminService } from 'src/admin/admin.service';
+import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Admin } from 'src/admin/interfaces/admin.interface';
 import { PayloadToken } from '../models/token.model';
-
+import { User } from 'src/user/interfaces/user.interface';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly adminService: AdminService, private jwtService: JwtService ) {}
+  constructor(
+    private readonly adminService: AdminService,
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
   async validateAdmin(email: string, password: string) {
     const user = await this.adminService.findByEmail(email);
@@ -22,11 +27,31 @@ export class AuthService {
     return null;
   }
 
-  generateJWT(user: Admin) {
+  generateAdminJWT(user: Admin) {
     const payload: PayloadToken = { role: user.role, sub: user.id };
     return {
-        access_token: this.jwtService.sign(payload),
-        user
+      access_token: this.jwtService.sign(payload),
+      user,
+    };
+  }
+
+  async validateUser(email: string, password: string) {
+    const user = await this.userService.findByEmail(email);
+    if (user) {
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (isMatch) {
+        const { password, ...rta } = user.toJSON();
+        return rta;
+      }
+    }
+    return null;
+  }
+
+  generateUserJWT(user: User) {
+    const payload: PayloadToken = { role: user.role, sub: user.id };
+    return {
+      access_token: this.jwtService.sign(payload),
+      user,
     };
   }
 }
