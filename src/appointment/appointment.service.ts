@@ -1,16 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateAppointmentDTO, UpdateAppointmentDTO } from './dto/appointment.dto';
+import {
+  CreateAppointmentDTO,
+  UpdateAppointmentDTO,
+} from './dto/appointment.dto';
 import { Appointment } from './interfaces/appointment.interface';
 
 @Injectable()
 export class AppointmentService {
   constructor(
-    @InjectModel('Appointment') private readonly appointmentModel: Model<Appointment>,
+    @InjectModel('Appointment')
+    private readonly appointmentModel: Model<Appointment>,
   ) {}
 
-  async createAppointment(createAppointmentDTO: CreateAppointmentDTO): Promise<Appointment> {
+  async createAppointment(
+    createAppointmentDTO: CreateAppointmentDTO,
+  ): Promise<Appointment> {
     const newAppointment = new this.appointmentModel(createAppointmentDTO);
     return newAppointment.save();
   }

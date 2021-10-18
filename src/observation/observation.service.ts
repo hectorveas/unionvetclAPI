@@ -1,16 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateObservationDTO, UpdateObservationDTO } from './dto/observation.dto';
+import {
+  CreateObservationDTO,
+  UpdateObservationDTO,
+} from './dto/observation.dto';
 import { Observation } from './interfaces/observation.interface';
 
 @Injectable()
 export class ObservationService {
   constructor(
-    @InjectModel('Observation') private readonly observationModel: Model<Observation>,
+    @InjectModel('Observation')
+    private readonly observationModel: Model<Observation>,
   ) {}
 
-  async createObservation(createObservationDTO: CreateObservationDTO): Promise<Observation> {
+  async createObservation(
+    createObservationDTO: CreateObservationDTO,
+  ): Promise<Observation> {
     const newObservation = new this.observationModel(createObservationDTO);
     return newObservation.save();
   }

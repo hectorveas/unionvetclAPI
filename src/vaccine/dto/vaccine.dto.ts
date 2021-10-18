@@ -2,7 +2,6 @@ import { IsString, IsNotEmpty, MaxLength, IsDate } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateVaccineDTO {
-
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
@@ -23,7 +22,6 @@ export class CreateVaccineDTO {
   @IsString()
   @ApiProperty()
   readonly dose: string;
- 
 }
 
 export class UpdateVaccineDTO extends PartialType(CreateVaccineDTO) {}

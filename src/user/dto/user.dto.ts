@@ -1,10 +1,16 @@
-import { IsString, IsNotEmpty, MaxLength, MinLength, IsBoolean, IsDate } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  MaxLength,
+  MinLength,
+  IsBoolean,
+  IsDate,
+} from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 import { Pet } from 'src/pet/interfaces/pet.interface';
 import { Appointment } from 'src/appointment/interfaces/appointment.interface';
 
 export class CreateUserDTO {
-
   @IsString()
   @IsNotEmpty()
   @MinLength(0, {
@@ -87,8 +93,6 @@ export class CreateUserDTO {
   })
   @ApiProperty()
   readonly password: string;
-
 }
-
 
 export class UpdateUserDTO extends PartialType(CreateUserDTO) {}

@@ -14,9 +14,7 @@ export class ServiceService {
     private readonly serviceModel: Model<Service>,
   ) {}
 
-  async createService(
-    createServiceDTO: CreateServiceDTO,
-  ): Promise<Service> {
+  async createService(createServiceDTO: CreateServiceDTO): Promise<Service> {
     const newService = new this.serviceModel(createServiceDTO);
     return newService.save();
   }

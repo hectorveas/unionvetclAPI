@@ -10,7 +10,12 @@ export const ObservationSchema = new Schema(
     anamnesis: { type: String },
     diagnostic: { type: String },
     treatment: { type: String },
-    vaccines: { type: Schema.Types.ObjectId, ref: 'Vaccine', required: false, autopopulate: { maxDepth: 2 } }
+    vaccines: {
+      type: Schema.Types.ObjectId,
+      ref: 'Vaccine',
+      required: false,
+      autopopulate: { maxDepth: 2 },
+    },
   },
   { timestamps: true },
 );

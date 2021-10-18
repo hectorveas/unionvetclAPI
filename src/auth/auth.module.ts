@@ -25,7 +25,7 @@ import { UserStrategy } from './strategies/user.strategy';
       },
     }),
   ],
-  providers: [AuthService, LocalStrategy,UserStrategy, JwtStrategy],
+  providers: [AuthService, LocalStrategy, UserStrategy, JwtStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}

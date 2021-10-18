@@ -5,7 +5,7 @@ export enum State {
   NOTSTATE,
   PENDING,
   CONFIRMED,
-  REJECTED
+  REJECTED,
 }
 
 export interface Appointment extends Document {

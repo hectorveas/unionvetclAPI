@@ -5,10 +5,9 @@ import { AuthService } from '../services/auth.service';
 import { Admin } from 'src/admin/interfaces/admin.interface';
 import { User } from 'src/user/interfaces/user.interface';
 
-
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService ) {}
+  constructor(private authService: AuthService) {}
 
   @UseGuards(AuthGuard('local'))
   @Post('login/admin')

@@ -1,9 +1,14 @@
-import { IsString, IsNotEmpty, MaxLength, IsDate, IsNumber } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  MaxLength,
+  IsDate,
+  IsNumber,
+} from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 import { Appointment } from 'src/appointment/interfaces/appointment.interface';
 
 export class CreateScheduleDTO {
-
   @IsDate()
   @ApiProperty()
   readonly startDate: Date;
@@ -22,7 +27,6 @@ export class CreateScheduleDTO {
   @IsNumber()
   @ApiProperty()
   readonly maxAppointment: number;
-
 }
 
 export class UpdateScheduleDTO extends PartialType(CreateScheduleDTO) {}

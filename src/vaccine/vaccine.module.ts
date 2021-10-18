@@ -9,6 +9,6 @@ import { VaccineService } from './vaccine.service';
     MongooseModule.forFeature([{ name: 'Vaccine', schema: VaccineSchema }]),
   ],
   controllers: [VaccineController],
-  providers: [VaccineService]
+  providers: [VaccineService],
 })
 export class VaccineModule {}

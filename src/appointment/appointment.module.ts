@@ -6,9 +6,11 @@ import { AppointmentSchema } from './schemas/appointment.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Appointment', schema: AppointmentSchema }]),
+    MongooseModule.forFeature([
+      { name: 'Appointment', schema: AppointmentSchema },
+    ]),
   ],
   controllers: [AppointmentController],
-  providers: [AppointmentService]
+  providers: [AppointmentService],
 })
 export class AppointmentModule {}

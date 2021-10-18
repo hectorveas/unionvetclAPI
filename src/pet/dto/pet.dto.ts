@@ -2,7 +2,6 @@ import { IsString, IsNumber, IsDate, IsNotEmpty } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreatePetDTO {
-
   @IsString()
   @ApiProperty()
   readonly name: string;
