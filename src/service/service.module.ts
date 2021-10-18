@@ -9,6 +9,6 @@ import { ServiceService } from './service.service';
     MongooseModule.forFeature([{ name: 'Service', schema: ServiceSchema }]),
   ],
   controllers: [ServiceController],
-  providers: [ServiceService]
+  providers: [ServiceService],
 })
 export class ServiceModule {}

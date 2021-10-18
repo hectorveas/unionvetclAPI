@@ -28,5 +28,4 @@ export class CreateAdminDTO {
   readonly role: string;
 }
 
-
 export class UpdateAdminDTO extends PartialType(CreateAdminDTO) {}

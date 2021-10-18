@@ -24,7 +24,7 @@ import { ServiceService } from './service.service';
 export class ServiceController {
   constructor(private serviceService: ServiceService) {}
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Post()
   async createService(@Res() res, @Body() createServiceDTO: CreateServiceDTO) {
     const service = await this.serviceService.createService(createServiceDTO);
@@ -34,14 +34,14 @@ export class ServiceController {
     });
   }
 
-  @Public()
+  //@Public()
   @Get()
   async getServices(@Res() res) {
     const service = await this.serviceService.getServices();
     return res.status(HttpStatus.OK).json(service);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Get('/:id')
   async getService(@Res() res, @Param('id') id) {
     const service = await this.serviceService.getService(id);
@@ -49,7 +49,7 @@ export class ServiceController {
     return res.status(HttpStatus.OK).json(service);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Delete('/:id')
   async deleteService(@Res() res, @Param('id') id) {
     const service = await this.serviceService.deleteService(id);
@@ -60,7 +60,7 @@ export class ServiceController {
     });
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Put('/:id')
   async updateService(
     @Res() res,

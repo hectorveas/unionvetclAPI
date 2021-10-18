@@ -6,9 +6,13 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './controllers/auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { UserModule } from 'src/user/user.module';
+import { UserStrategy } from './strategies/user.strategy';
 
 @Module({
-  imports: [AdminModule,
+  imports: [
+    AdminModule,
+    UserModule,
     PassportModule,
     JwtModule.registerAsync({
       useFactory: () => {
@@ -21,7 +25,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       },
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [AuthService, LocalStrategy, UserStrategy, JwtStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}

@@ -22,12 +22,12 @@ import {
 } from './dto/publication.dto';
 import { PublicationService } from './publication.service';
 
-@UseGuards(JwtAuthGuard, RolesGuard)
+//@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('publication')
 export class PublicationController {
   constructor(private publicationService: PublicationService) {}
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Post()
   async createPublication(
     @Res() res,
@@ -42,14 +42,14 @@ export class PublicationController {
     });
   }
 
-  @Public()
+  //@Public()
   @Get()
   async getPublications(@Res() res) {
     const publication = await this.publicationService.getPublications();
     return res.status(HttpStatus.OK).json(publication);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Get('/:id')
   async getPublication(@Res() res, @Param('id') id) {
     const publication = await this.publicationService.getPublication(id);
@@ -58,7 +58,7 @@ export class PublicationController {
     return res.status(HttpStatus.OK).json(publication);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Delete('/:id')
   async deletePublication(@Res() res, @Param('id') id) {
     const publication = await this.publicationService.deletePublication(id);
@@ -70,7 +70,7 @@ export class PublicationController {
     });
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Put('/:id')
   async updatePublication(
     @Res() res,

@@ -21,7 +21,6 @@ export class AdminService {
   }
 
   findByEmail(email: string) {
-    console.log(email);
     return this.adminModel.findOne({ email }).exec();
   }
 
