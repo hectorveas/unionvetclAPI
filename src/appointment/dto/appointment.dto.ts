@@ -1,5 +1,6 @@
 import { IsString, IsNotEmpty, MaxLength, IsDate } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
+import { State } from '../interfaces/appointment.interface';
 
 export class CreateAppointmentDTO {
   @IsString()
@@ -16,10 +17,8 @@ export class CreateAppointmentDTO {
   @ApiProperty()
   readonly endDate: Date;
 
-  @IsString()
-  @IsNotEmpty()
   @ApiProperty()
-  readonly state: string;
+  readonly state: State;
 }
 
 export class UpdateAppointmentDTO extends PartialType(CreateAppointmentDTO) {}
