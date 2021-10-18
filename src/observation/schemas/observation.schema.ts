@@ -10,7 +10,8 @@ export const ObservationSchema = new Schema(
     anamnesis: { type: String },
     diagnostic: { type: String },
     treatment: { type: String },
-    vaccines: { type: Schema.Types.ObjectId, ref: 'Vaccine' },
+    vaccines: { type: Schema.Types.ObjectId, ref: 'Vaccine', required: false, autopopulate: { maxDepth: 2 } }
   },
   { timestamps: true },
 );
+ObservationSchema.plugin(require('mongoose-autopopulate'));
