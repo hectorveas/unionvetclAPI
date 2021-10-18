@@ -8,7 +8,7 @@ export const ScheduleSchema = new Schema(
     year: {type: String, required: true},
     day: {type: String, required: true},
     maxAppointment: {type: Number, required: true},
-    appointments: [{type: Schema.Types.ObjectId, ref: 'Appointment'}]
+    Appointments: [{ type: Schema.Types.ObjectId, ref: 'Appointment', required: false, autopopulate: { maxDepth: 2 } }]
   },
   { timestamps: true },
 );
