@@ -19,12 +19,12 @@ import { Role } from 'src/auth/models/roles.model';
 import { CreateScheduleDTO, UpdateScheduleDTO } from './dto/schedule.dto';
 import { ScheduleService } from './schedule.service';
 
-@UseGuards(JwtAuthGuard, RolesGuard)
+//@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('schedule')
 export class ScheduleController {
   constructor(private scheduleService: ScheduleService) {}
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Post()
   async createSchedule(
     @Res() res,
@@ -39,14 +39,14 @@ export class ScheduleController {
     });
   }
 
-  @Public()
+  //@Public()
   @Get()
   async getSchedules(@Res() res) {
     const schedule = await this.scheduleService.getSchedules();
     return res.status(HttpStatus.OK).json(schedule);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Get('/:id')
   async getSchedule(@Res() res, @Param('id') id) {
     const schedule = await this.scheduleService.getSchedule(id);
@@ -54,7 +54,7 @@ export class ScheduleController {
     return res.status(HttpStatus.OK).json(schedule);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Delete('/:id')
   async deleteSchedule(@Res() res, @Param('id') id) {
     const schedule = await this.scheduleService.deleteSchedule(id);
@@ -65,7 +65,7 @@ export class ScheduleController {
     });
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Put('/:id')
   async updateSchedule(
     @Res() res,

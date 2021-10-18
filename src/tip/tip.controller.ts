@@ -22,12 +22,12 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 //import { ApiKeyGuard } from 'src/auth/guards/api-key.guard';
 
 //@UseGuards(ApiKeyGuard)
-@UseGuards(JwtAuthGuard, RolesGuard)
+//@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('tip')
 export class TipController {
   constructor(private tipService: TipService) {}
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Post()
   async createTip(@Res() res, @Body() createTipDTO: CreateTipDTO) {
     const tip = await this.tipService.createTip(createTipDTO);
@@ -37,14 +37,14 @@ export class TipController {
     });
   }
 
-  @Public()
+  //@Public()
   @Get()
   async getTips(@Res() res) {
     const tip = await this.tipService.getTips();
     return res.status(HttpStatus.OK).json(tip);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Get('/:id')
   async getTip(@Res() res, @Param('id') id) {
     const tip = await this.tipService.getTip(id);
@@ -52,7 +52,7 @@ export class TipController {
     return res.status(HttpStatus.OK).json(tip);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Delete('/:id')
   async deleteTip(@Res() res, @Param('id') id) {
     const tip = await this.tipService.deleteTip(id);
@@ -63,7 +63,7 @@ export class TipController {
     });
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Put('/:id')
   async updateTip(
     @Res() res,

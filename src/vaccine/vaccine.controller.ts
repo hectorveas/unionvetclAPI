@@ -19,12 +19,12 @@ import { Role } from 'src/auth/models/roles.model';
 import { CreateVaccineDTO, UpdateVaccineDTO } from './dto/vaccine.dto';
 import { VaccineService } from './vaccine.service';
 
-@UseGuards(JwtAuthGuard, RolesGuard)
+//@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('vaccine')
 export class VaccineController {
   constructor(private vaccineService: VaccineService) {}
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Post()
   async createVaccine(@Res() res, @Body() createVaccineDTO: CreateVaccineDTO) {
     const vaccine = await this.vaccineService.createVaccine(createVaccineDTO);
@@ -34,14 +34,14 @@ export class VaccineController {
     });
   }
 
-  @Public()
+  //@Public()
   @Get()
   async getVaccines(@Res() res) {
     const vaccine = await this.vaccineService.getVaccines();
     return res.status(HttpStatus.OK).json(vaccine);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Get('/:id')
   async getVaccine(@Res() res, @Param('id') id) {
     const vaccine = await this.vaccineService.getVaccine(id);
@@ -49,7 +49,7 @@ export class VaccineController {
     return res.status(HttpStatus.OK).json(vaccine);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Delete('/:id')
   async deleteVaccine(@Res() res, @Param('id') id) {
     const vaccine = await this.vaccineService.deleteVaccine(id);
@@ -60,7 +60,7 @@ export class VaccineController {
     });
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Put('/:id')
   async updateVaccine(
     @Res() res,
