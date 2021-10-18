@@ -10,8 +10,9 @@ export const PetSchema = new Schema(
     chipNumber: { type: String, required : false },
     gender: { type: String, required: true },
     dateBirth: {tyoe: Date, required: false},
-    vaccinationHistory: { type: Schema.Types.ObjectId, ref: 'Vaccine' },
-    ObservationHistory: { type: Schema.Types.ObjectId, ref: 'Observation' },
+    vaccinationHistory: { type: Schema.Types.ObjectId, ref: 'Vaccine', autopopulate: { maxDepth: 2 }},
+    ObservationHistory: { type: Schema.Types.ObjectId, ref: 'Observation', autopopulate: { maxDepth: 2 } },
   },
   { timestamps: true },
 );
+PetSchema.plugin(require('mongoose-autopopulate'));
