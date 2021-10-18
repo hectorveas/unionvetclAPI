@@ -8,6 +8,15 @@ import { ContactModule } from './contact/contact.module';
 import { ProductModule } from './product/product.module';
 import { TipModule } from './tip/tip.module';
 import { PublicationModule } from './publication/publication.module';
+import { ServiceModule } from './service/service.module';
+import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
+import { PetModule } from './pet/pet.module';
+import { VaccineModule } from './vaccine/vaccine.module';
+import { ObservationModule } from './observation/observation.module';
+import { ScheduleModule } from './schedule/schedule.module';
+import { AppointmentModule } from './appointment/appointment.module';
 
 @Module({
   imports: [
@@ -28,6 +37,15 @@ import { PublicationModule } from './publication/publication.module';
     ProductModule,
     TipModule,
     PublicationModule,
+    ServiceModule,
+    AuthModule,
+    AdminModule,
+    UserModule,
+    PetModule,
+    VaccineModule,
+    ObservationModule,
+    ScheduleModule,
+    AppointmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

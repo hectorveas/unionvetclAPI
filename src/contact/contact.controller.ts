@@ -9,14 +9,22 @@ import {
   Post,
   Put,
   Res,
+  UseGuards,
 } from '@nestjs/common';
+import { Public } from 'src/auth/guards/decorators/public.decorator';
+import { Roles } from 'src/auth/guards/decorators/roles.decorator';
+//import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+//import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Role } from 'src/auth/models/roles.model';
 import { ContactService } from './contact.service';
 import { CreateContactDTO, UpdateContactDTO } from './dto/contact.dto';
 
+//@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('contact')
 export class ContactController {
   constructor(private contactService: ContactService) {}
 
+  //@Public()
   @Post()
   async createContact(@Res() res, @Body() createContactDTO: CreateContactDTO) {
     const contact = await this.contactService.createContact(createContactDTO);
@@ -26,12 +34,14 @@ export class ContactController {
     });
   }
 
+  //@Roles(Role.ADMIN)
   @Get()
   async getContacts(@Res() res) {
     const contact = await this.contactService.getContacts();
     return res.status(HttpStatus.OK).json(contact);
   }
 
+  //@Roles(Role.ADMIN)
   @Get('/:id')
   async getContact(@Res() res, @Param('id') id) {
     const contact = await this.contactService.getContact(id);
@@ -39,6 +49,7 @@ export class ContactController {
     return res.status(HttpStatus.OK).json(contact);
   }
 
+  //@Roles(Role.ADMIN)
   @Delete('/:id')
   async deleteContact(@Res() res, @Param('id') id) {
     const contact = await this.contactService.deleteContact(id);
@@ -49,6 +60,7 @@ export class ContactController {
     });
   }
 
+  //@Roles(Role.ADMIN)
   @Put('/:id')
   async updateContact(
     @Res() res,
