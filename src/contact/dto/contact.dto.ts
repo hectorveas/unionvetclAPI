@@ -8,7 +8,7 @@ export class CreateContactDTO {
   })
   @IsNotEmpty()
   @ApiProperty()
-  readonly name: string;
+  readonly fullName: string;
 
   @IsString()
   @MaxLength(30, {
