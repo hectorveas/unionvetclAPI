@@ -16,8 +16,8 @@ export class AuthController {
   @Post('recover')
   async recover(@Req() req: Request, @Res() res) {
     const email = req.body.email;
-    const host = req.headers.host;
-    const user: Admin = await this.authService.recoverPasswordAdmin(email, host);
+    //const host = req.headers.host;
+    const user: Admin = await this.authService.recoverPasswordAdmin(email);
     if (!user)
     {
       return res
@@ -64,12 +64,14 @@ export class AuthController {
   @Post('reset')
   async resetPassword(@Req() req: Request, @Res() res) {
     let user = req.user as Admin;
-    const token = req.params.token;
+    const token = req.body.token;
     const password = req.body.password;
     user = await this.authService.resetPasswordAdmin(token, password);
     if (user)
     {
-      if (!user) return res.status(401).json({message: 'Password reset token is invalid or has expired.'});
-    } return res.status(200).json({message: 'Your password has been updated.'});
+      return res.status(200).json({message: 'Your password has been updated.', status: 200});
+    } else {
+      return res.status(401).json({message: 'Password reset token is invalid or has expired.', status: 401});
+    }
   }
 }

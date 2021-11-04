@@ -57,17 +57,14 @@ export class AuthService {
     };
   }
 
-  async recoverPasswordAdmin(email: string, host: string) {
+  async recoverPasswordAdmin(email: string) {
     let userRecover = await this.adminService.findByEmail(email);
-    console.log(userRecover);
     if (userRecover) {
       userRecover = await this.adminService.generatePasswordReset(userRecover);
       if (userRecover) {
         // send email
         let link =
-          'http://' +
-          host +
-          '/api/auth/reset/' +
+          'http://localhost:32456/recuperar-clave/' +
           userRecover.resetPasswordToken;
         
           await this.sendGrid.send({
@@ -98,7 +95,6 @@ export class AuthService {
     if (userRecover) {
       userRecover = await this.adminService.updatePassword(userRecover, newPassword);
       if (userRecover) {
-
           await this.sendGrid.send({
             to: userRecover.email,
             from: process.env.FROM_EMAIL,
@@ -107,6 +103,7 @@ export class AuthService {
             This is a confirmation that the password for your account ${userRecover.email} has just been changed.\n`
           });
       }
+      return userRecover;
     }
     return null;
   }
