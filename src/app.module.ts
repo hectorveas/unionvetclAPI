@@ -17,6 +17,7 @@ import { VaccineModule } from './vaccine/vaccine.module';
 import { ObservationModule } from './observation/observation.module';
 import { ScheduleModule } from './schedule/schedule.module';
 import { AppointmentModule } from './appointment/appointment.module';
+import { SendGridModule } from "@anchan828/nest-sendgrid";
 
 @Module({
   imports: [
@@ -46,6 +47,9 @@ import { AppointmentModule } from './appointment/appointment.module';
     ObservationModule,
     ScheduleModule,
     AppointmentModule,
+    SendGridModule.forRoot({
+      apikey: process.env.SENDGRID_API_KEY,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

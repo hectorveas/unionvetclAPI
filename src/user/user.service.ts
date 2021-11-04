@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { SendGridService } from "@anchan828/nest-sendgrid";
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateUserDTO, UpdateUserDTO } from './dto/user.dto';
@@ -7,7 +8,7 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+  constructor(@InjectModel('User') private readonly userModel: Model<User> ,private readonly sendGrid: SendGridService) {}
 
   async createUser(createUserDTO: CreateUserDTO) {
     const newUser = new this.userModel(createUserDTO);
@@ -15,6 +16,7 @@ export class UserService {
     newUser.password = hashPassword;
     const model = await newUser.save();
     const { password, ...rta } = model.toJSON();
+    await this.SendWelcomeMail(model.email, model.firstName);
     return rta;
   }
 
@@ -42,5 +44,14 @@ export class UserService {
       .findByIdAndUpdate(id, { $set: updateUserDTO }, { new: true })
       .exec();
     return updatedUser;
+  }
+
+  async SendWelcomeMail( email: string, name: string): Promise<void> {
+    await this.sendGrid.send({
+      to: email,
+      from: process.env.FROM_EMAIL,
+      subject: `BIENVENIDO ${name} A UNIONVET`,
+      html: "BIENVENIDO BASTARDO PERRO CTM A UNIONVET",
+    });
   }
 }

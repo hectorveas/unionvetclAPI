@@ -19,7 +19,7 @@ import { Role } from 'src/auth/models/roles.model';
 import { CreateServiceDTO, UpdateServiceDTO } from './dto/service.dto';
 import { ServiceService } from './service.service';
 
-@UseGuards(JwtAuthGuard, RolesGuard)
+//@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('service')
 export class ServiceController {
   constructor(private serviceService: ServiceService) {}
