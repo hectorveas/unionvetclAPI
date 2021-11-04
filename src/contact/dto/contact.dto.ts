@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, MaxLength } from 'class-validator';
+import { IsString, IsNotEmpty, MaxLength, IsBoolean } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateContactDTO {
@@ -35,4 +35,8 @@ export class CreateContactDTO {
   readonly message: string;
 }
 
-export class UpdateContactDTO extends PartialType(CreateContactDTO) {}
+export class UpdateContactDTO extends PartialType(CreateContactDTO) {
+  @IsBoolean()
+  @ApiProperty()
+  readonly isReaded: boolean;
+}
