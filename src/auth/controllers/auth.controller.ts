@@ -26,9 +26,9 @@ export class AuthController {
           message:
             'The email address ' +
             req.body.email +
-            ' is not associated with any account. Double-check your email address and try again.',
+            ' is not associated with any account. Double-check your email address and try again.', status: 401
         });
-    } return res.status(200).json({ message: 'Password recovery email sent' });
+    } return res.status(200).json({ message: 'Password recovery email sent', status: 200 });
   }
 
   @UseGuards(AuthGuard('local'))
