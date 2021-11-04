@@ -64,7 +64,7 @@ export class AuthService {
       if (userRecover) {
         // send email
         let link =
-          'http://localhost:32456/recuperar-clave/' +
+          'http://localhost:32456/password/recuperar-clave/' +
           userRecover.resetPasswordToken;
         
           await this.sendGrid.send({
