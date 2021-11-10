@@ -19,6 +19,15 @@ export class CreateAppointmentDTO {
 
   @ApiProperty()
   readonly state: State;
+
 }
 
-export class UpdateAppointmentDTO extends PartialType(CreateAppointmentDTO) {}
+export class UpdateAppointmentDTO extends PartialType(CreateAppointmentDTO) {
+  @IsString()
+  @ApiProperty()
+  readonly responsableCncellation: string;
+
+  @IsString() 
+  @ApiProperty()
+  readonly motiveCancellation: string;
+}
