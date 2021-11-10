@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, MaxLength, IsDate, IsDateString } from 'class-validator';
+import { IsString, IsNotEmpty, IsDateString } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 import { State } from '../interfaces/appointment.interface';
 
