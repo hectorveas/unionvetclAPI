@@ -6,7 +6,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Admin } from 'src/admin/interfaces/admin.interface';
 import { PayloadToken } from '../models/token.model';
 import { User } from 'src/user/interfaces/user.interface';
-import { SendGridService } from "@anchan828/nest-sendgrid";
+import { SendGridService } from '@anchan828/nest-sendgrid';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +14,7 @@ export class AuthService {
     private readonly adminService: AdminService,
     private userService: UserService,
     private jwtService: JwtService,
-    private readonly sendGrid: SendGridService
+    private readonly sendGrid: SendGridService,
   ) {}
 
   async validateAdmin(email: string, password: string) {
@@ -66,15 +66,16 @@ export class AuthService {
         let link =
           'http://localhost:32456/password/recuperar-clave/' +
           userRecover.resetPasswordToken;
-        
-          await this.sendGrid.send({
-            to: userRecover.email,
-            from: process.env.FROM_EMAIL,
-            subject: `CAMBIO DE CONTRASEÑA UNIONVET`,
-            text: `Hi,\n 
-            Please click on the following link ${link} to reset your password. \n\n 
-            If you did not request this, please ignore this email and your password will remain unchanged.\n`,
-          });
+
+        await this.sendGrid.send({
+          to: userRecover.email,
+          from: process.env.FROM_EMAIL,
+          subject: `SOLICITUD CAMBIO DE CONTRASEÑA UNIONVET`,
+          text: `Hola,\n\n
+            Hemos recibido una solicitud para restablecer tu contraseña. Si tú no has solicitado restablecer tu contraseña, omite este mensaje.\n\n
+            Para restablecer tu contraseña debes hacer click en el botón 'Restablecer contraseña'. Por motivos de seguridad el botón generado sólo es válido por los próximos 60 minutos, luego de lo cual tendrás que contactar a nuestro equipo de soporte para poder reestablecer tu contraseña.\n\n
+            Por favor habra el siguiente link ${link} para restablecer su contraseña.\n`,
+        });
 
         return userRecover;
       }
@@ -93,15 +94,18 @@ export class AuthService {
   async resetPasswordAdmin(token: string, newPassword: string) {
     let userRecover = await this.adminService.findByToken(token);
     if (userRecover) {
-      userRecover = await this.adminService.updatePassword(userRecover, newPassword);
+      userRecover = await this.adminService.updatePassword(
+        userRecover,
+        newPassword,
+      );
       if (userRecover) {
-          await this.sendGrid.send({
-            to: userRecover.email,
-            from: process.env.FROM_EMAIL,
-            subject: `Your password has been changed`,
-            text:`Hi,\n 
-            This is a confirmation that the password for your account ${userRecover.email} has just been changed.\n`
-          });
+        await this.sendGrid.send({
+          to: userRecover.email,
+          from: process.env.FROM_EMAIL,
+          subject: `CAMBIO DE CONTRASEÑA UNIONVET REALIZADO EXITOSAMENTE `,
+          text: `Hola,\n\n
+            El cambio de contraseña para tu cuenta ${userRecover.email} ha sido realizado exitosamente.\n\n`
+        });
       }
       return userRecover;
     }

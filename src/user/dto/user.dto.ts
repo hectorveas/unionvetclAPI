@@ -3,8 +3,6 @@ import {
   IsNotEmpty,
   MaxLength,
   MinLength,
-  IsBoolean,
-  IsDate,
 } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 import { Pet } from 'src/pet/interfaces/pet.interface';
