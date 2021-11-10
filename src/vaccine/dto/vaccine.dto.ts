@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, MaxLength, IsDate } from 'class-validator';
+import { IsString, IsNotEmpty, IsDateString } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateVaccineDTO {
@@ -11,7 +11,7 @@ export class CreateVaccineDTO {
   @ApiProperty()
   readonly description: string;
 
-  @IsDate()
+  @IsDateString() 
   @ApiProperty()
   readonly DateAplication: Date;
 
