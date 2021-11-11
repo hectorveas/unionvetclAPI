@@ -39,6 +39,14 @@ export class CreateProductDTO {
   @ApiProperty()
   readonly description: string;
 
+  @IsString()
+  @MaxLength(50, {
+    message: 'input incorrecto ',
+  })
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly category: string;
+
   @IsNumber()
   @ApiProperty()
   readonly stock: number;
