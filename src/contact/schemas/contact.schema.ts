@@ -6,7 +6,8 @@ export const ContactSchema = new Schema(
     phone: { type: String, required: true },
     email: { type: String, required: true },
     message: { type: String, required: true },
-    isReaded: { type: Boolean, default: false}
+    isReaded: { type: Boolean, default: false},
+    response: { type: String, required: false }
   },
   { timestamps: true },
 );

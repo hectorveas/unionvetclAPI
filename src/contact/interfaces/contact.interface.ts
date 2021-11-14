@@ -6,4 +6,5 @@ export interface Contact extends Document {
   readonly email: string;
   readonly message: string;
   readonly isReaded: string;
+  readonly response: string;
 }

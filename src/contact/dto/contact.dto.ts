@@ -3,17 +3,11 @@ import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateContactDTO {
   @IsString()
-  @MaxLength(50, {
-    message: 'input incorrecto ',
-  })
   @IsNotEmpty()
   @ApiProperty()
   readonly fullName: string;
 
   @IsString()
-  @MaxLength(30, {
-    message: 'input incorrecto ',
-  })
   @IsNotEmpty()
   @ApiProperty()
   readonly email: string;
@@ -27,12 +21,20 @@ export class CreateContactDTO {
   readonly phone: string;
 
   @IsString()
-  @MaxLength(500, {
+  @MaxLength(400, {
     message: 'input incorrecto ',
   })
   @IsNotEmpty()
   @ApiProperty()
   readonly message: string;
+
+  @IsString()
+  @MaxLength(400, {
+    message: 'input incorrecto ',
+  })
+  @ApiProperty()
+  readonly response: string;
+
 }
 
 export class UpdateContactDTO extends PartialType(CreateContactDTO) {
