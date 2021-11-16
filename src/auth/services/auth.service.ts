@@ -68,10 +68,10 @@ export class AuthService {
           userRecover.resetPasswordToken;
         
         await this.sendGrid.send({
-          to: userRecover.email,
+          //to: userRecover.email,
           from: process.env.FROM_EMAIL,
           subject: `SOLICITUD CAMBIO DE CONTRASEÑA UNIONVET`,
-          templateId: "d-a9bfd2e12472496ea5f4d04bb3422393",
+          templateId: "d-983846ac3e06406291b8c801ed942ff3",
           personalizations: [
             {
               to: userRecover.email,
@@ -105,11 +105,17 @@ export class AuthService {
       );
       if (userRecover) {
         await this.sendGrid.send({
-          to: userRecover.email,
+          //to: userRecover.email,
           from: process.env.FROM_EMAIL,
-          subject: `CAMBIO DE CONTRASEÑA UNIONVET REALIZADO EXITOSAMENTE `,
-          text: `Hola,\n\n
-            El cambio de contraseña para tu cuenta ${userRecover.email} ha sido realizado exitosamente.\n\n`
+          templateId: "d-a9bfd2e12472496ea5f4d04bb3422393",
+          personalizations: [
+            {
+              to: userRecover.email,
+              dynamicTemplateData:{
+                email: userRecover.email,
+              },
+            }
+          ]
         });
       }
       return userRecover;
