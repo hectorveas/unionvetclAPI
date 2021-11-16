@@ -37,7 +37,7 @@ export class AuthService {
     };
   }
 
-  async validateUser(email: string, password: string) {
+  /*async validateUser(email: string, password: string) {
     const user = await this.userService.findByEmail(email);
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);
@@ -47,7 +47,7 @@ export class AuthService {
       }
     }
     return null;
-  }
+  }*/
 
   generateUserJWT(user: User) {
     const payload: PayloadToken = { role: user.role, sub: user.id };
@@ -66,15 +66,20 @@ export class AuthService {
         let link =
           'http://localhost:32456/password/recuperar-clave/' +
           userRecover.resetPasswordToken;
-
+        
         await this.sendGrid.send({
           to: userRecover.email,
           from: process.env.FROM_EMAIL,
           subject: `SOLICITUD CAMBIO DE CONTRASEÑA UNIONVET`,
-          text: `Hola,\n\n
-            Hemos recibido una solicitud para restablecer tu contraseña. Si tú no has solicitado restablecer tu contraseña, omite este mensaje.\n\n
-            Para restablecer tu contraseña debes hacer click en el botón 'Restablecer contraseña'. Por motivos de seguridad el botón generado sólo es válido por los próximos 60 minutos, luego de lo cual tendrás que contactar a nuestro equipo de soporte para poder reestablecer tu contraseña.\n\n
-            Por favor habra el siguiente link ${link} para restablecer su contraseña.\n`,
+          templateId: "d-a9bfd2e12472496ea5f4d04bb3422393",
+          personalizations: [
+            {
+              to: userRecover.email,
+              dynamicTemplateData:{
+                link: link,
+              },
+            }
+          ]
         });
 
         return userRecover;

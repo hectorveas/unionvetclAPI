@@ -12,12 +12,13 @@ export class UserService {
 
   async createUser(createUserDTO: CreateUserDTO) {
     const newUser = new this.userModel(createUserDTO);
-    const hashPassword = await bcrypt.hash(newUser.password, 10);
-    newUser.password = hashPassword;
-    const model = await newUser.save();
-    const { password, ...rta } = model.toJSON();
-    await this.SendWelcomeMail(model.email, model.firstName);
-    return rta;
+    return newUser.save();
+    //const hashPassword = await bcrypt.hash(newUser.password, 10);
+    //newUser.password = hashPassword;
+    //const model = await newUser.save();
+    //const { password, ...rta } = model.toJSON();
+    //await this.SendWelcomeMail(model.email, model.firstName);
+    //return rta;
   }
 
   findByEmail(email: string) {

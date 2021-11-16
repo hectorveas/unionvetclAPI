@@ -12,11 +12,12 @@ export class UserStrategy extends PassportStrategy(Strategy, 'user') {
     });
   }
 
-  async validate(email: string, password: string) {
+  /*async validate(email: string, password: string) {
     const user = await this.authService.validateUser(email, password);
     if (!user) {
       throw new UnauthorizedException('not allow');
     }
     return user;
   }
+  */
 }

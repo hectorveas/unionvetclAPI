@@ -81,16 +81,16 @@ export class CreateUserDTO {
   @ApiProperty()
   readonly email: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(0, {
-    message: 'input incorrecto',
-  })
-  @MaxLength(50, {
-    message: 'input incorrecto ',
-  })
-  @ApiProperty()
-  readonly password: string;
+  //@IsString()
+  //@IsNotEmpty()
+  //@MinLength(0, {
+  //  message: 'input incorrecto',
+  //})
+  //@MaxLength(50, {
+  //  message: 'input incorrecto ',
+  //})
+  //@ApiProperty()
+  //readonly password: string;
 }
 
 export class UpdateUserDTO extends PartialType(CreateUserDTO) {}
