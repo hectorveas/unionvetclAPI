@@ -31,16 +31,12 @@ export class CreateUserDTO {
   @ApiProperty()
   readonly lastName: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(0, {
-    message: 'input incorrecto',
-  })
-  @MaxLength(100, {
-    message: 'input incorrecto ',
-  })
   @ApiProperty()
-  readonly address: string;
+  readonly address: {
+    street: string;
+    commune: string;
+    region: string;
+  }
 
   @IsString()
   @IsNotEmpty()

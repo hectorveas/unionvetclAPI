@@ -6,11 +6,11 @@ export const UserSchema = new Schema(
     lastName: { type: String, required: true },
     email: { type: String, required: true },
     //password: { type: String, required: true },
-    address: { type: String, required: true },
+    address: { type: {street: String, commune: String, region: String}, required: true },
     phone: { type: String, required: true },
     rut: { type: String, required: false },
     isVerifed: { type: Boolean, default: false },
-    LastConection: { type: Date, required: false, default: Date.now },
+    lastConection: { type: Date, required: false, default: Date.now },
     pets: [
       {
         type: Schema.Types.ObjectId,
@@ -19,7 +19,7 @@ export const UserSchema = new Schema(
         autopopulate: { maxDepth: 2 },
       },
     ],
-    Appointments: [
+    appointments: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Appointment',
@@ -27,7 +27,7 @@ export const UserSchema = new Schema(
         autopopulate: { maxDepth: 2 },
       },
     ],
-    role: { type: String, required: true, default: 'user' },
+    role: { type: String, required: false, default: 'user' },
   },
   { timestamps: true },
 );
