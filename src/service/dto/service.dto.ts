@@ -14,9 +14,19 @@ export class CreateServiceDTO {
   @ApiProperty()
   readonly description: string[];
 
-  @IsNotEmpty()
   @ApiProperty()
-  readonly imagesURL: string[];
+  readonly imageOne: string;
+
+  @ApiProperty()
+  readonly imageTwo: string;
+
+  @ApiProperty()
+  readonly imageThree: string;
+
+  @ApiProperty()
+  readonly imageFour: string;
+
+
 }
 
 export class UpdateServiceDTO extends PartialType(CreateServiceDTO) {}
