@@ -9,7 +9,7 @@ import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateProductDTO {
   @IsString()
-  @MaxLength(100, {
+  @MaxLength(1000, {
     message: 'input incorrecto ',
   })
   @ApiProperty()
@@ -32,7 +32,7 @@ export class CreateProductDTO {
   readonly name: string;
 
   @IsString()
-  @MaxLength(500, {
+  @MaxLength(1000, {
     message: 'input incorrecto ',
   })
   @IsNotEmpty()
