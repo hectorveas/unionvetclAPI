@@ -8,10 +8,7 @@ import {
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateProductDTO {
-  @IsString()
-  @MaxLength(1000, {
-    message: 'input incorrecto ',
-  })
+
   @ApiProperty()
   readonly imageUrl: string;
 
