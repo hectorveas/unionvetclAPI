@@ -13,7 +13,7 @@ export class CreateProductDTO {
   readonly imageUrl: string;
 
   @IsString()
-  @MaxLength(50, {
+  @MaxLength(100, {
     message: 'input incorrecto ',
   })
   @IsNotEmpty()
@@ -21,7 +21,7 @@ export class CreateProductDTO {
   readonly brand: string;
 
   @IsString()
-  @MaxLength(30, {
+  @MaxLength(100, {
     message: 'input incorrecto ',
   })
   @IsNotEmpty()
@@ -37,7 +37,7 @@ export class CreateProductDTO {
   readonly description: string;
 
   @IsString()
-  @MaxLength(50, {
+  @MaxLength(100, {
     message: 'input incorrecto ',
   })
   @IsNotEmpty()
