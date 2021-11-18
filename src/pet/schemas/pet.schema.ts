@@ -3,7 +3,7 @@ import { Schema } from 'mongoose';
 export const PetSchema = new Schema(
   {
     name: { type: String, required: true },
-    age: { type: Number, required: false },
+    age: { type: Number },
     breed: { type: String, required: false },
     species: { type: String, required: false },
     color: { type: String, required: false },

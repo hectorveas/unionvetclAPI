@@ -6,7 +6,6 @@ export class CreatePetDTO {
   @ApiProperty()
   readonly name: string;
 
-  @IsNumber()
   @ApiProperty()
   readonly age: number;
 
