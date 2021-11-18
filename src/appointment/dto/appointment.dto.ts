@@ -7,13 +7,9 @@ export class CreateAppointmentDTO {
   @ApiProperty()
   readonly idUser: string;
 
-  @IsDateString() 
-  @IsNotEmpty()
   @ApiProperty()
   readonly startDate: Date;
 
-  @IsDateString() 
-  @IsNotEmpty()
   @ApiProperty()
   readonly endDate: Date;
 

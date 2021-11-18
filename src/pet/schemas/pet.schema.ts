@@ -9,7 +9,7 @@ export const PetSchema = new Schema(
     color: { type: String, required: false },
     chipNumber: { type: String, required: false },
     gender: { type: String, required: true },
-    dateBirth: { tyoe: Date, required: false },
+    dateBirth: Date,
     vaccinationHistory: {
       type: Schema.Types.ObjectId,
       ref: 'Vaccine',

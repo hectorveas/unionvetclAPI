@@ -7,10 +7,8 @@ import { PartialType, ApiProperty } from '@nestjs/swagger';
 import { Appointment } from 'src/appointment/interfaces/appointment.interface';
 
 export class CreateScheduleDTO {
-  @IsDateString() 
   @ApiProperty()
   readonly startDate: Date;
-  @IsDateString() 
   @ApiProperty()
   readonly endDate: Date;
   @IsString()

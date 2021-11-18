@@ -11,7 +11,6 @@ export class CreateVaccineDTO {
   @ApiProperty()
   readonly description: string;
 
-  @IsDateString() 
   @ApiProperty()
   readonly DateAplication: Date;
 

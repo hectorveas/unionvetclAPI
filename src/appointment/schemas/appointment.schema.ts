@@ -10,8 +10,8 @@ export const AppointmentSchema = new Schema(
     },
     userName: { type: String, required: false },
     userLastName: { type: String, required: false },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
+    startDate: Date,
+    endDate: Date,
     state: { type: Number, default: 0 },
     observation: [
       {

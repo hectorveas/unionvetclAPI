@@ -2,8 +2,8 @@ import { Schema } from 'mongoose';
 
 export const ScheduleSchema = new Schema(
   {
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
+    startDate: Date,
+    endDate: Date,
     month: { type: String, required: true },
     year: { type: String, required: true },
     day: { type: String, required: true },
