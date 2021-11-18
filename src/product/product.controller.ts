@@ -8,15 +8,17 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Res,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { Public } from 'src/auth/guards/decorators/public.decorator';
 import { Roles } from 'src/auth/guards/decorators/roles.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Role } from 'src/auth/models/roles.model';
-import { CreateProductDTO, UpdateProductDTO } from './dto/product.dto';
+import { CreateProductDTO, UpdateProductDTO, FilterProductDTO } from './dto/product.dto';
 import { ProductService } from './product.service';
 
 //@UseGuards(JwtAuthGuard, RolesGuard)
@@ -36,8 +38,8 @@ export class ProductController {
 
   //@Public()
   @Get()
-  async getProducts(@Res() res) {
-    const product = await this.productService.getProducts();
+  async getProducts(@Res() res, @Query() params: FilterProductDTO) {
+    const product = await this.productService.getProducts(params);
     return res.status(HttpStatus.OK).json(product);
   }
 

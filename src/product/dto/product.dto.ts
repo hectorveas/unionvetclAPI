@@ -4,6 +4,9 @@ import {
   MaxLength,
   IsNumber,
   IsBoolean,
+  IsOptional,
+  IsPositive,
+  Min,
 } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
@@ -54,4 +57,15 @@ export class UpdateProductDTO extends PartialType(CreateProductDTO) {
   @IsBoolean()
   @ApiProperty()
   readonly sale: boolean;
+
+}
+
+export class FilterProductDTO {
+  @IsOptional()
+  @IsPositive()
+  limit: number;
+
+  @IsOptional()
+  @Min(0)
+  offset: number;
 }
