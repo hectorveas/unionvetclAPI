@@ -5,8 +5,7 @@ export const UserSchema = new Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true },
-    //password: { type: String, required: true },
-    address: { type: {street: String, commune: String, region: String}, required: true },
+    address: { type: {street: String, region: String, commune: String}, required: true },
     phone: { type: String, required: true },
     rut: { type: String, required: false },
     isVerifed: { type: Boolean, default: false },
@@ -19,7 +18,7 @@ export const UserSchema = new Schema(
         autopopulate: { maxDepth: 2 },
       },
     ],
-    appointments: [
+    Appointments: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Appointment',
@@ -27,7 +26,7 @@ export const UserSchema = new Schema(
         autopopulate: { maxDepth: 2 },
       },
     ],
-    role: { type: String, required: false, default: 'user' },
+    role: { type: String, required: true, default: 'user' },
   },
   { timestamps: true },
 );
