@@ -37,9 +37,16 @@ export class ProductController {
   }
 
   //@Public()
+  @Get('paginate')
+  async getProductsPaginate(@Res() res, @Query() params: FilterProductDTO) {
+    const product = await this.productService.getProductsPaginate(params);
+    return res.status(HttpStatus.OK).json(product);
+  }
+
+  //@Public()
   @Get()
-  async getProducts(@Res() res, @Query() params: FilterProductDTO) {
-    const product = await this.productService.getProducts(params);
+  async getProducts(@Res() res) {
+    const product = await this.productService.getProducts();
     return res.status(HttpStatus.OK).json(product);
   }
 

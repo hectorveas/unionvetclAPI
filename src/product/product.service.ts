@@ -15,9 +15,8 @@ export class ProductService {
     return newProduct.save();
   }
 
-  async getProducts(params?: FilterProductDTO) {
+  async getProductsPaginate(params?: FilterProductDTO) {
     const { limit = 15, offset = 0 } = params;
-
     const [total, products] = await Promise.all([
       this.productModel.countDocuments(),
       this.productModel
@@ -26,8 +25,14 @@ export class ProductService {
         .limit(limit)
         .exec(),
     ]);
+    const totalPages = Math.ceil(total / limit);
 
-    return { total, products };
+    return { total, totalPages ,products };
+  }
+
+  async getProducts(): Promise<Product[]> {
+    const products = await this.productModel.find();
+    return products;
   }
 
   async getProduct(id: string): Promise<Product> {
