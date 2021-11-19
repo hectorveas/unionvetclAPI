@@ -9,6 +9,10 @@ export class CreatePublicationDTO {
   @IsNotEmpty()
   @ApiProperty()
   readonly url: string;
+
+  @ApiProperty()
+  readonly description: string;
+
 }
 
 export class UpdatePublicationDTO extends PartialType(CreatePublicationDTO) {}
