@@ -4,11 +4,11 @@ export const ScheduleSchema = new Schema(
   {
     startDate: Date,
     endDate: Date,
-    month: { type: String, required: true },
-    year: { type: String, required: true },
-    day: { type: String, required: true },
+    month: { type: Number, required: true },
+    year: { type: Number, required: true },
+    day: { type: Number, required: true },
     maxAppointment: { type: Number, required: true },
-    Appointments: [
+    appointments: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Appointment',

@@ -9,17 +9,19 @@ import { Appointment } from 'src/appointment/interfaces/appointment.interface';
 export class CreateScheduleDTO {
   @ApiProperty()
   readonly startDate: Date;
+  
   @ApiProperty()
   readonly endDate: Date;
-  @IsString()
+
   @ApiProperty()
-  readonly month: string;
-  @IsString()
+  readonly month: number;
+
   @ApiProperty()
-  readonly year: string;
-  @IsString()
+  readonly year: number;
+
   @ApiProperty()
-  readonly day: string;
+  readonly day: number;
+
   @IsNumber()
   @ApiProperty()
   readonly maxAppointment: number;
