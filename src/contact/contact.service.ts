@@ -3,11 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateContactDTO, UpdateContactDTO } from './dto/contact.dto';
 import { Contact } from './interfaces/contact.interface';
-
+import { SendGridService } from '@anchan828/nest-sendgrid';
 @Injectable()
 export class ContactService {
   constructor(
     @InjectModel('Contact') private readonly contactModel: Model<Contact>,
+    private readonly sendGrid: SendGridService,
   ) {}
 
   async createContact(createContactDTO: CreateContactDTO): Promise<Contact> {
@@ -37,6 +38,23 @@ export class ContactService {
     const updatedContact = await this.contactModel
       .findByIdAndUpdate(id, { $set: updateContactDTO }, { new: true })
       .exec();
+
+    if(updatedContact.response) {
+      await this.sendGrid.send({
+        //to: userRecover.email,
+        from: process.env.FROM_EMAIL,
+        templateId: "d-8ca3957d1ace4533a901cc0be520496a",
+        personalizations: [
+          {
+            to: updatedContact.email ,
+            dynamicTemplateData:{
+              name: updatedContact.fullName,
+              Response: updatedContact.response,
+            },
+          }
+        ]
+      });
+    }
     return updatedContact;
   }
 }
