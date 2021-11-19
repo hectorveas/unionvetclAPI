@@ -11,7 +11,7 @@ export const AppointmentSchema = new Schema(
     userName: { type: String, required: false },
     userLastName: { type: String, required: false },
     userId: { type: String, required: false },
-    state: { type: Number, default: 0 },
+    state: { type: Number, default: 1 },
     block: { type: Number, required: false },
     date: { type: {day: Number, month: Number, year: Number}, required: true },
     observation: [
