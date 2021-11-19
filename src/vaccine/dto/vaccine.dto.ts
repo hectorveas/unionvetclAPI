@@ -12,7 +12,7 @@ export class CreateVaccineDTO {
   readonly description: string;
 
   @ApiProperty()
-  readonly DateAplication: Date;
+  readonly dateAplication: Date;
 
   @IsString()
   @ApiProperty()
