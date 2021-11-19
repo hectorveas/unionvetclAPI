@@ -7,5 +7,6 @@ export interface Product extends Document {
   readonly description: string;
   readonly stock: number;
   readonly sale: boolean;
+  readonly updatedAt: Date;
   readonly category: string;
 }
