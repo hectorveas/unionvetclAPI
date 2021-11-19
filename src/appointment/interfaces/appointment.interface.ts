@@ -1,5 +1,6 @@
 import { Document } from 'mongoose';
 import { Observation } from 'src/observation/interfaces/observation.interface';
+import { Pet } from 'src/pet/interfaces/pet.interface';
 
 export enum State {
   NOTSTATE,
@@ -9,13 +10,18 @@ export enum State {
 }
 
 export interface Appointment extends Document {
-  readonly idUser: string;
+  readonly patient: Pet;
   readonly userName: string;
   readonly userLastName: string;
-  readonly startTime: Date;
-  readonly endTime: Date;
+  readonly userId: string;
   readonly state: State;
+  readonly block: number;
+  readonly date : {
+    day: number;
+    month: number;
+    year: number;
+  }
   readonly observation: Observation;
-  readonly responsableCncellation: string;
+  readonly responsableCancellation: string;
   readonly motiveCancellation: string;
 }

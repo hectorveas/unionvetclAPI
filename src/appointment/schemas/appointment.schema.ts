@@ -2,17 +2,18 @@ import { Schema } from 'mongoose';
 
 export const AppointmentSchema = new Schema(
   {
-    idUser: {
+    patient: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'Pet',
       required: true,
       autopopulate: { maxDepth: 2 },
     },
     userName: { type: String, required: false },
     userLastName: { type: String, required: false },
-    startDate: Date,
-    endDate: Date,
+    userId: { type: String, required: false },
     state: { type: Number, default: 0 },
+    block: { type: Number, required: false },
+    date: { type: {day: Number, month: Number, year: Number}, required: true },
     observation: [
       {
         type: Schema.Types.ObjectId,
@@ -21,7 +22,7 @@ export const AppointmentSchema = new Schema(
         autopopulate: { maxDepth: 2 },
       },
     ],
-    responsableCncellation: { type: String, required: false },
+    responsableCancellation: { type: String, required: false },
     motiveCancellation: { type: String, required: false },
   },
   { timestamps: true },
