@@ -28,17 +28,17 @@ export class CreateContactDTO {
   @ApiProperty()
   readonly message: string;
 
-  @IsString()
-  @MaxLength(400, {
-    message: 'input incorrecto ',
-  })
-  @ApiProperty()
-  readonly response: string;
-
 }
 
 export class UpdateContactDTO extends PartialType(CreateContactDTO) {
   @IsBoolean()
   @ApiProperty()
   readonly isReaded: boolean;
+
+  @IsString()
+  @MaxLength(400, {
+    message: 'input incorrecto ',
+  })
+  @ApiProperty()
+  readonly response: string;
 }
