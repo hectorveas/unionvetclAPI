@@ -21,6 +21,8 @@ export const AppointmentSchema = new Schema(
         autopopulate: { maxDepth: 2 },
       },
     ],
+    responsableCncellation: { type: String, required: false },
+    motiveCancellation: { type: String, required: false },
   },
   { timestamps: true },
 );

@@ -16,4 +16,6 @@ export interface Appointment extends Document {
   readonly endTime: Date;
   readonly state: State;
   readonly observation: Observation;
+  readonly responsableCncellation: string;
+  readonly motiveCancellation: string;
 }

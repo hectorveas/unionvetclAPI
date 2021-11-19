@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsDate, IsNotEmpty } from 'class-validator';
+import { IsString, IsNumber, IsDateString } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreatePetDTO {
@@ -29,6 +29,7 @@ export class CreatePetDTO {
   @ApiProperty()
   readonly gender: string;
 
+  @IsDateString() 
   @ApiProperty()
   readonly dateBirth: Date;
 }

@@ -8,6 +8,7 @@ export const ProductSchema = new Schema(
     description: { type: String, required: true },
     stock: { type: Number, default: 0 },
     sale: { type: Boolean, default: false },
+    category: { type: String, required: false  },
   },
   { timestamps: true },
 );

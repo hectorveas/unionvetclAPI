@@ -22,12 +22,12 @@ import {
 } from './dto/appointment.dto';
 import { AppointmentService } from './appointment.service';
 
-@UseGuards(JwtAuthGuard, RolesGuard)
+//@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('appointment')
 export class AppointmentController {
   constructor(private appointmentService: AppointmentService) {}
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Post()
   async createAppointment(
     @Res() res,
@@ -42,14 +42,14 @@ export class AppointmentController {
     });
   }
 
-  @Public()
+  //@Public()
   @Get()
   async getAppointments(@Res() res) {
     const appointment = await this.appointmentService.getAppointments();
     return res.status(HttpStatus.OK).json(appointment);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Get('/:id')
   async getAppointment(@Res() res, @Param('id') id) {
     const appointment = await this.appointmentService.getAppointment(id);
@@ -58,7 +58,7 @@ export class AppointmentController {
     return res.status(HttpStatus.OK).json(appointment);
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Delete('/:id')
   async deleteAppointment(@Res() res, @Param('id') id) {
     const appointment = await this.appointmentService.deleteAppointment(id);
@@ -70,7 +70,7 @@ export class AppointmentController {
     });
   }
 
-  @Roles(Role.ADMIN)
+  //@Roles(Role.ADMIN)
   @Put('/:id')
   async updateAppointment(
     @Res() res,
