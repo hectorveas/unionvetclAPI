@@ -10,5 +10,5 @@ export interface Pet extends Document {
   readonly gender: string;
   readonly dateBirth?: Date;
   readonly vaccinationHistory: [string];
-  readonly ObservationHistory: [string];
+  readonly observationHistory: [string];
 }

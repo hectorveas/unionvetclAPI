@@ -15,7 +15,7 @@ export const PetSchema = new Schema(
       ref: 'Vaccine',
       autopopulate: { maxDepth: 2 },
     },
-    ObservationHistory: {
+    observationHistory: {
       type: Schema.Types.ObjectId,
       ref: 'Observation',
       autopopulate: { maxDepth: 2 },
