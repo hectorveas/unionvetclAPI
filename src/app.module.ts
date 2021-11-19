@@ -18,6 +18,7 @@ import { ObservationModule } from './observation/observation.module';
 import { ScheduleModule } from './schedule/schedule.module';
 import { AppointmentModule } from './appointment/appointment.module';
 import { SendGridModule } from "@anchan828/nest-sendgrid";
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { SendGridModule } from "@anchan828/nest-sendgrid";
     SendGridModule.forRoot({
       apikey: process.env.SENDGRID_API_KEY,
     }),
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [AppService],
